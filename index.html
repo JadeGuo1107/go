@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>跳转中...</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+        <h3>正在跳转至 Obsidian 笔记...</h3>
+        <p>如果浏览器弹出提示，请选择“允许”。</p>
+    </div>
+    <script>
+        // 获取 URL 中 url 参数的内容
+        const urlParams = new URLSearchParams(window.location.search);
+        const target = urlParams.get('url');
+
+        if (target) {
+            // 解码并尝试执行本地协议跳转
+            window.location.href = decodeURIComponent(target);
+            // 3秒后尝试自动关闭中转页（部分浏览器支持）
+            setTimeout(() => { window.close(); }, 3000);
+        } else {
+            document.body.innerHTML = "<h3>错误：未发现跳转目标。</h3>";
+        }
+    </script>
+</body>
+</html>
